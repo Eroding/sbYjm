@@ -8,6 +8,7 @@ import com.cnh.service.FavService;
 import com.cnh.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,7 +52,7 @@ FavService favService;
 
     //查看自己是否收藏了该手机
     @RequestMapping("/findVByuserIdAndPhoneId")
-    public  Result<Object>  findVByuserIdAndPhoneId(int userId,int phoneId) {
+    public  Result<Object>  findVByuserIdAndPhoneId(@RequestBody int userId, @RequestBody int phoneId) {
         Favorite favorite =   favService.findVByuserIdAndPhoneId(userId,phoneId);
         return ResultUtil.success(favorite);
     }

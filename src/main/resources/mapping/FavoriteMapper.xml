@@ -120,9 +120,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="findAll" resultType="com.cnh.dataobject.Favorite">
-    select * from where user_id=#{userId}
+    select * from favorite where user_id=#{userId}
   </select>
   <select id="findVByuserIdAndPhoneId" resultType="com.cnh.dataobject.Favorite">
-     select * from where user_id=#{userId} and phone_id=#{phoneId}
+     select * from favorite where user_id=#{userId} and phone_id=#{phoneId}
   </select>
 </mapper>

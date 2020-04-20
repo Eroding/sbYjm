@@ -61,7 +61,7 @@ return ResultUtil.success(user);
 
     @RequestMapping("/accuss")
     @ResponseBody
-    public Result<Boolean> accuss( HttpServletResponse response,@Valid LoginVo loginVo,
+    public Result<Boolean> accuss( HttpServletResponse response,  @RequestBody @Valid LoginVo loginVo,
                                     BindingResult bindingResult){
         log.info(loginVo.toString());
         //参数校验

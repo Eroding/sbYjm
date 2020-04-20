@@ -41,7 +41,7 @@ public class PhoneController {
 
 
     @RequestMapping("/findAll")
-    public Object findAll(String status, String phoneName) {
+    public Object findAll(@RequestBody String status, @RequestBody String phoneName) {
        List<PhoneWithCommentDto> phone =  phoneService.findAll(status,phoneName);
         return ResultUtil.success(phone);
     }

@@ -1,0 +1,20 @@
+todo：仔细看接口，如果controller层的传参写了@RequestBody，就表示前端可以传json格式，如果没写，就传普通文本格式
+todo; 你也可以自己添加@RequestBody，这样前端就可以传json，此处加json，只和前端传参有关，与其他接口无关
+
+登录/订单/点赞/手机/用户模块
+登录模块      登录接口名：login/do_login 传参为json格式的nickname和password
+              注册接口名：login/accuss  传参和上面一样
+
+手机模块 （主要接口）1.手机上传：phone/add  json传参（必传参数phoneName imgUrl price userId（上传人id，当前谁登录就传谁的id）
+                                           price价格 status(0 新手机  1旧手机 store 库存 cont 简介)）
+
+              2. 用户进入手机首页：     phone/findAll     （会带着status， 比如点击新手机板块，就需要传status=0 json格式）
+                    模糊查询         ： phone/findAll （phoneName 手机名，可以传status，也可以不传status）
+//todo：其中 2. 中返回值会带有手机购买者的评价，比如A用户上架了苹果x。C用户和D用户购买，并作出评价，则手机首页
+//todo:会显示B和C做出的评价，是list格式 返回list的字段名可以看 dto/PhoneWithCommentDto这个类，
+
+用户模块; admin查看所有用户信息     user/lookByAdmin，自动将admin用户信息移除，其余全展示，
+          用户查看自己信息user/lookBySelef
+
+订单接口：用户下单接口   orderPhone/add    phoneId（手机id）userId（下单人id）releaseId（手机发布者id）
+//todo:凡是订单接口出了下单和改变状态所返回的值都是dataobject/OrderUserPhone 类型 字段名备注了
