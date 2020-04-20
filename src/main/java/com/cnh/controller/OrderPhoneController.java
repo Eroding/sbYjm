@@ -81,7 +81,7 @@ public class OrderPhoneController {
 
 
     /**
-     * 用户查看自己买了哪些玩意
+     * 用户查看自己买了哪些手机
      * @param userId
      * @return
      */
