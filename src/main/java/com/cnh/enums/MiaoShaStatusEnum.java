@@ -14,6 +14,8 @@ public enum MiaoShaStatusEnum {
     COLLECTION(7,"您已收藏该手机，请勿重复收藏"),
 
 STOCK_EMPTY(3,"商品库存不足,已经被秒杀抢光"),
+
+    UNCOLLECTION(8,"您已经取消收藏"),
     //重复秒杀
     REPEATE_MIAOSHA(4,"商品重复秒杀"),
 

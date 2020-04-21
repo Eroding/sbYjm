@@ -47,6 +47,10 @@ return ResultUtil.error(MiaoShaStatusEnum.COLLECTION);
     public  Result<Object> updateStatus(int id) {
 
       Favorite favorite =   favService.selectByPrimaryKey(id);
+
+      if(favorite.getStatus()==0){ //如果本来已经取消了
+          return ResultUtil.error(MiaoShaStatusEnum.UNCOLLECTION);
+      }
         favorite.setStatus(0);
         favService.updateByPrimaryKey(favorite);
         return ResultUtil.success();
