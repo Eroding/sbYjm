@@ -86,8 +86,8 @@ public class OrderPhoneController {
      * @return
      */
     @RequestMapping("/findByUserIdAndStatus")
-    public Object findByUserIdAndStatus(int userId) {
-      List<OrderUserPhone>   o =  orderPhoneService.findByUserIdAndStatus(userId);
+    public Object findByUserIdAndStatus(Integer userId,Integer status) {
+      List<OrderUserPhone>   o =  orderPhoneService.findByUserIdAndStatus(userId,status);
         return ResultUtil.success(o);
     }
 
@@ -113,10 +113,10 @@ public class OrderPhoneController {
      * @return
      */
     @RequestMapping("/updateStatus")
-    public Object updateStatus(int id) {
+    public Object updateStatus(int id,String status) {
 
         Orders o = orderPhoneService.findById2(id);
-         o.setStatus("1");
+         o.setStatus(status);
         orderPhoneService.update(o);
         return ResultUtil.success();
     }

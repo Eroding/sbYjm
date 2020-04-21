@@ -111,7 +111,15 @@
 
   </select>
   <select id="findByUserIdAndStatus" resultMap="BaseResultMap1">
-    SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id        where a.user_id = #{userId}
+    SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id
+   <where>
+    <if test="status != null">
+      b.status=#{status}
+   </if>
+     <if test="userId != null">
+    and  a.user_id =#{userId}
+     </if>
+   </where>
   </select>
     <select id="findByPhoneId" resultType="com.cnh.dataobject.Orders">
  select * from orders where phone_id = #{phoneId}    </select>

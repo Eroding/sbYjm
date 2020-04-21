@@ -34,4 +34,6 @@ public interface PhoneMapper {
      * @mbggenerated Tue Apr 14 23:40:33 CST 2020
      */
     int insertSelective(Phone record);
+
+    List<Phone> findByUserId(@Param("userId")int userId,@Param("status") int status);
 }

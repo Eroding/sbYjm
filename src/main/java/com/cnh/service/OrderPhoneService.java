@@ -38,8 +38,8 @@ public class OrderPhoneService {
     }
 
 
-    public List<OrderUserPhone> findByUserIdAndStatus(int userId){
-        return   orderMapper.findByUserIdAndStatus(userId);
+    public List<OrderUserPhone> findByUserIdAndStatus(Integer userId,Integer status){
+        return   orderMapper.findByUserIdAndStatus(userId,status);
     }
 
     public List<OrderUserPhone> findAll(){

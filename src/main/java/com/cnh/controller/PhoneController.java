@@ -41,7 +41,7 @@ public class PhoneController {
 
 
     @RequestMapping("/findAll")
-    public Object findAll(@RequestBody String status, @RequestBody String phoneName) {
+    public Object findAll(String status,String phoneName) {
        List<PhoneWithCommentDto> phone =  phoneService.findAll(status,phoneName);
         return ResultUtil.success(phone);
     }
@@ -57,6 +57,18 @@ public class PhoneController {
     public Object update(@RequestBody Phone phone) {
         phoneService.update(phone);
         return ResultUtil.success();
+    }
+
+    /**
+     * 用户查看自己发布的二手手机
+     * @param userId
+     * @param status
+     * @return
+     */
+    @RequestMapping("/findByUserId")
+    public Object findByUserId(int userId,int status) {
+       List<Phone> phone =phoneService.findByUserId(userId,status);
+        return ResultUtil.success(phone);
     }
 
 

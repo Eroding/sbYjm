@@ -70,16 +70,16 @@ public  void delete(int id){
     //就可以放到redis中
 public User getById(long id){
  //todo:先去redis中取，如果没有的话就去mysql中取
-   User user= redisService.get(UserKey.getById,""+id,User.class);
+/*   User user= redisService.get(UserKey.getById,""+id,User.class);
     if(user!=null){
         return user;
-    }
-   user = userDao.getById(id);
+    }*/
+ //  user = userDao.getById(id);
     //todo:如果数据库中是有的
-    if(user!=null){
+   /* if(user!=null){
         redisService.set(UserKey.getById,""+id,user);
-    }
-
+    }*/
+User user = userDao.getById(id);
     return  user;
 }
 

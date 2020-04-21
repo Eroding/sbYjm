@@ -34,7 +34,7 @@ public interface OrderMapper {
     List<OrderUserPhone>  findByUserIdPhone(int userId);
 
 
-    List<OrderUserPhone> findByUserIdAndStatus(@Param("userId")int userId);
+    List<OrderUserPhone> findByUserIdAndStatus(@Param("userId")Integer userId,@Param("status")Integer status);
 
     void update(Orders record);
 

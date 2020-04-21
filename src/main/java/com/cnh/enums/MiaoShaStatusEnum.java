@@ -11,6 +11,7 @@ public enum MiaoShaStatusEnum {
     FINISH(1,"已结结束了，敬请期待下次哦"),
 
     STARTING(2,"活动正在进行中"),
+    COLLECTION(7,"您已收藏该手机，请勿重复收藏"),
 
 STOCK_EMPTY(3,"商品库存不足,已经被秒杀抢光"),
     //重复秒杀

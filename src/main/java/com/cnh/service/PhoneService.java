@@ -2,6 +2,7 @@ package com.cnh.service;
 
 import com.cnh.dao.OrderMapper;
 import com.cnh.dao.PhoneMapper;
+import com.cnh.dao.UserDao;
 import com.cnh.dataobject.Orders;
 import com.cnh.dataobject.Phone;
 import com.cnh.dto.PhoneWithCommentDto;
@@ -22,6 +23,9 @@ public class PhoneService {
 
     @Autowired
     OrderMapper orderMapper;
+
+    @Autowired
+    UserService userService;
 
     public void add(Phone phone){
          phoneMapper.insert(phone);
@@ -59,14 +63,17 @@ public class PhoneService {
              String com =   orders1.getComment();
                 coms.add(com);
             }
-
             BeanUtils.copyProperties(phone,phoneWithCommentDto);
             phoneWithCommentDto.setComments(coms);
+
+            phoneWithCommentDto.setUserName(userService.getById(phone.getUserId()).getNickname());
             list.add(phoneWithCommentDto);
         }
        return list;
     }
 
 
-
+    public List<Phone> findByUserId(int userId,int status) {
+      return   phoneMapper.findByUserId(userId,status);
+    }
 }
