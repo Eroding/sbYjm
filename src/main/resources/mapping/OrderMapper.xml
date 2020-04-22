@@ -7,6 +7,7 @@
     <result column="user_id" property="userId" jdbcType="INTEGER"/>
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="release_id" property="releaseId" jdbcType="INTEGER" />
   </resultMap>
 
 
@@ -23,6 +24,7 @@
     <result column="type" property="type" jdbcType="VARCHAR"/>
     <result column="store" property="store" jdbcType="VARCHAR" />
     <result column="cont" property="cont" jdbcType="VARCHAR" />
+    <result column="releaseId" property="releaseId" jdbcType="VARCHAR" />
   </resultMap>
   <insert id="insert" parameterType="com.cnh.dataobject.Orders" >
     <!--
@@ -33,7 +35,7 @@
     insert into orders (id, phone_id, user_id,
       status,comment)
     values (#{id,jdbcType=INTEGER}, #{phoneId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
-      #{status,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR})
+      #{status,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{releaseId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.cnh.dataobject.Orders" >
     <!--
@@ -56,7 +58,10 @@
       status,
     </if>
       <if test="comment != null" >
-        comment,
+      comment,
+    </if>
+      <if test="releaseId != null" >
+        release_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -74,6 +79,9 @@
       </if>
       <if test="comment != null" >
         #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseId != null" >
+        #{releaseId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -95,23 +103,26 @@
     <if test="comment != null" >
       #{comment,jdbcType=VARCHAR},
     </if>
+    <if test="releaseId != null" >
+      #{releaseId,jdbcType=INTEGER},
+    </if>
     where id =#{id}
   </update>
   <delete id="delete" parameterType="int">
       delete from orders where id = #{id}
     </delete>
   <select id="findById" resultType="com.cnh.dataobject.OrderUserPhone">
-    SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id where a.id=#{id}
+    SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,a.release_id releaseId,b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id where a.id=#{id}
   </select>
   <select id="findAll" resultMap="BaseResultMap1">
-  SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id
+  SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,a.release_id releaseId,b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id
   </select>
   <select id="findAllByStatus" resultMap="BaseResultMap1">
-   SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id        where a.status=#{status}
+   SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,a.release_id releaseId,b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id        where a.status=#{status}
 
   </select>
   <select id="findByUserIdAndStatus" resultMap="BaseResultMap1">
-    SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id
+    SELECT u.nickname nickname,a.id id,a.phone_id phoneId,a.user_id userId,a.status orderStstus,a.comment comments,a.release_id releaseId, b.phone_name phonename,b.img_url imgUrl,b.price price,b.status phoneStatus,b.types type, b.store store,b.cont cont FROM `orders` a LEFT JOIN phone b   on a.phone_id=b.id  LEFT JOIN `user` u      on  a.user_id = u.id
    <where>
     <if test="status != null">
       b.status=#{status}

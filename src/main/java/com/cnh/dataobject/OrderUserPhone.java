@@ -18,4 +18,5 @@ public class OrderUserPhone {
     private String type; //型号
     private String store;  //库存
     private String cont;  //描述
+    private String releaseId;//发布者
 }

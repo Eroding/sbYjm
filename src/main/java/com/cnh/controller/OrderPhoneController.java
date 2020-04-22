@@ -45,6 +45,7 @@ public class OrderPhoneController {
         orderPhoneService.add(order);
        // Phone phone = phoneService.findById(order.getPhoneId());
         phone.setStore(String.valueOf(Integer.valueOf(phone.getStore())-1));
+        System.out.println("store"+phone.getId());
         phoneService.update(phone);
         return ResultUtil.success();
     }

@@ -7,6 +7,7 @@ import com.cnh.service.UserService;
 import com.cnh.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,7 +41,7 @@ return ResultUtil.error(ResultEnum.NOT_ADMIN);
 
     //admin用户更新信息
     @RequestMapping("/update")
-    public Object update(User user) {
+    public Object update(@RequestBody User user) {
         userService.update(user);
         return ResultUtil.success();
     }
