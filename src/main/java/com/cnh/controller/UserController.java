@@ -46,6 +46,25 @@ return ResultUtil.error(ResultEnum.NOT_ADMIN);
         return ResultUtil.success();
     }
 
+    //admin认证用户信息,是否认证成功
+    @RequestMapping("/relam")
+    public Object relam(int userId,int auth) {
+        User user =userService.getById(userId);
+        user.setAuth(auth);
+        userService.update(user);
+        return ResultUtil.success();
+    }
+
+
+    //用户提交认证信息
+    @RequestMapping("/updateRelam")
+    public Object updateRelam(@RequestBody User user) {
+        user.setAuth(1);
+userService.update(user);
+        userService.update(user);
+        return ResultUtil.success();
+    }
+
     //admin用户注销
     @RequestMapping("/delete")
     public Object delete(int id) {

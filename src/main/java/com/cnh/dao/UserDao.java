@@ -30,7 +30,8 @@ public interface UserDao {
     User getByName(@Param("nickname") String nickname);
 
 
-    @Update("update user set password =#{password},nickname=#{nickname},mobile=#{mobile},head=#{head},register_date=#{registerDate},last_login_date=#{lastLoginDate},login_count=#{loginCount},salt=#{salt} where id =#{id}")
+    @Update("update user set password =#{password},nickname=#{nickname},mobile=#{mobile},head=#{head},register_date=#{registerDate},last_login_date=#{lastLoginDate},login_count=#{loginCount},salt=#{salt}," +
+            "auth=#{auth},name=#{name},address=#{address},sex=#{sex},birthday=#{birthday},nation=#{nation} where id =#{id}")
     void update(User toBeuser);
 
 

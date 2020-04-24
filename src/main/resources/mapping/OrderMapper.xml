@@ -33,7 +33,7 @@
       This element was generated on Tue Apr 14 23:40:33 CST 2020.
     -->
     insert into orders (id, phone_id, user_id,
-      status,comment)
+      status,comment,release_id)
     values (#{id,jdbcType=INTEGER}, #{phoneId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
       #{status,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{releaseId,jdbcType=INTEGER})
   </insert>
@@ -86,27 +86,25 @@
     </trim>
   </insert>
   <update id="update" parameterType="com.cnh.dataobject.Orders">
-
-    update orders set
-    <if test="id != null" >
-      #{id,jdbcType=INTEGER},
-    </if>
+    update orders
+    <set>
     <if test="phoneId != null" >
-      #{phoneId,jdbcType=INTEGER},
+    phone_id =#{phoneId,jdbcType=INTEGER},
     </if>
     <if test="userId != null" >
-      #{userId,jdbcType=INTEGER},
+     user_id= #{userId,jdbcType=INTEGER},
     </if>
     <if test="status != null" >
-      #{status,jdbcType=VARCHAR},
+    status= #{status,jdbcType=VARCHAR},
     </if>
     <if test="comment != null" >
-      #{comment,jdbcType=VARCHAR},
+    comment= #{comment,jdbcType=VARCHAR},
     </if>
     <if test="releaseId != null" >
-      #{releaseId,jdbcType=INTEGER},
+      release_id =#{releaseId,jdbcType=INTEGER},
     </if>
-    where id =#{id}
+    </set>
+    where id =#{id,jdbcType=INTEGER}
   </update>
   <delete id="delete" parameterType="int">
       delete from orders where id = #{id}
